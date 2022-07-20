@@ -14,3 +14,4 @@ HomeLab As Code: Infrastucture as Code configurations for an r/selfhosted (Proxm
   - Proxmox host -> Access to Packer host (to download kickstart file)
 - Pre-Downloaded Linux ISOs
   - While I wanted to automate the download of the ISO, it is not efficient to download full DVD ISOs to packer host, then upload to Proxmox
+  - My preference: setup an NFS share for all proxmox host ISOs and download all ISOs centrally
