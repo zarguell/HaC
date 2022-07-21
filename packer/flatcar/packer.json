@@ -1,0 +1,64 @@
+{
+    "variables": {
+      "proxmox_username": "",
+      "proxmox_password": "",
+      "proxmox_url": "",
+      "proxmox_node": "",
+      "proxmox_storage_pool": "local-zfs",
+      "proxmox_storage_pool_type": "zfspool",
+      "proxmox_storage_format": "raw",
+      "proxmox_iso_pool": "isos:iso",
+      "flatcar_image": "flatcar_production_iso_image.iso",
+      "template_name": "flatcar-Template",
+      "template_description": "Flatcar Container Linux Template",
+      "version": ""
+    },
+    "builders": [
+      {
+        "type": "proxmox",
+        "username": "{{user `proxmox_username`}}",
+        "password": "{{user `proxmox_password`}}",
+        "proxmox_url": "{{ user `proxmox_url`}}",
+        "insecure_skip_tls_verify": false,
+        "node": "{{user `proxmox_node`}}",
+        "os": "l26",
+        "http_directory": "./",
+        "boot_command": [
+            "sudo passwd core<enter><wait>",
+            "packer<enter>",
+            "packer<enter>",
+            "sudo systemctl start sshd.service<enter>",
+            "curl -o /tmp/ignition.json http://{{ .HTTPIP }}:{{ .HTTPPort }}/ignition.json<enter><wait>",
+            "sudo flatcar-install -d /dev/sda -i /tmp/ignition.json<enter><wait>"
+        ],
+        "network_adapters": [
+          {
+            "bridge": "vmbr0",
+            "model": "virtio"
+          }
+        ],
+        "disks": [
+          {
+            "type": "scsi",
+            "disk_size": "8G",
+            "storage_pool": "{{user `proxmox_storage_pool`}}",
+            "storage_pool_type": "{{user `proxmox_storage_pool_type`}}",
+            "format": "{{user `proxmox_storage_format`}}"
+          }
+        ],
+        "scsi_controller": "virtio-scsi-single",
+        "iso_file": "{{user `proxmox_iso_pool`}}/{{user `flatcar_image`}}",
+        "boot_wait": "45s",
+        "cores": "2",
+        "memory": "2048",
+        "ssh_username": "core",
+        "ssh_password": "packer",
+        "ssh_port": 22,
+        "ssh_timeout": "15m",
+        "unmount_iso": true,
+        "template_name": "{{user `template_name`}}",
+        "template_description": "{{user `template_description`}}"
+      }
+    ]
+  }
+  

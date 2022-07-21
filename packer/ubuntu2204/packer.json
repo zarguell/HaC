@@ -7,10 +7,10 @@
     "proxmox_storage_pool": "local-zfs",
     "proxmox_storage_pool_type": "zfspool",
     "proxmox_storage_format": "raw",
-    "proxmox_iso_pool": "local:iso",
+    "proxmox_iso_pool": "isos:iso",
     "ubuntu_image": "ubuntu-22.04-live-server-amd64.iso",
     "template_name": "Ubuntu-22.04-Template",
-    "template_description": "Ubuntu 20.04 Template",
+    "template_description": "Ubuntu 22.04 Template",
     "version": ""
   },
   "builders": [
@@ -19,7 +19,7 @@
       "username": "{{user `proxmox_username`}}",
       "password": "{{user `proxmox_password`}}",
       "proxmox_url": "{{ user `proxmox_url`}}",
-      "insecure_skip_tls_verify": true,
+      "insecure_skip_tls_verify": false,
       "node": "{{user `proxmox_node`}}",
       "os": "l26",
       "boot_command": [
@@ -47,7 +47,7 @@
       "boot_wait": "5s",
       "cores": "2",
       "memory": "2048",
-      "http_directory": "ubuntu2204",
+      "http_directory": "./",
       "ssh_username": "ubuntu",
       "ssh_password": "ubuntu",
       "ssh_port": 22,

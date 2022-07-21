@@ -7,7 +7,7 @@
     "proxmox_storage_pool": "local-zfs",
     "proxmox_storage_pool_type": "zfspool",
     "proxmox_storage_format": "raw",
-    "proxmox_iso_pool": "local:iso",
+    "proxmox_iso_pool": "isos",
     "centos_image": "rhel-baseos-9.0-x86_64-dvd.iso",
     "template_name": "RHEL9-Template",
     "template_description": "Rocky Linux 9 Template",
@@ -19,7 +19,7 @@
       "username": "{{user `proxmox_username`}}",
       "password": "{{user `proxmox_password`}}",
       "proxmox_url": "{{ user `proxmox_url`}}",
-      "insecure_skip_tls_verify": true,
+      "insecure_skip_tls_verify": false,
       "node": "{{user `proxmox_node`}}",
       "os": "l26",
       "boot_command": [
@@ -46,7 +46,7 @@
       "cores": "2",
       "cpu_type": "Nehalem",
       "memory": "2048",
-      "http_directory": "rocky9",
+      "http_directory": "./",
       "ssh_username": "root",
       "ssh_password": "Packer",
       "ssh_port": 22,
@@ -60,6 +60,8 @@
     {
       "type": "shell",
       "inline": [
+        "subscription-manager register --username={{user `rhel_sub_user`}} --password={{user `rhel_sub_pass`}}",
+        "subscription-manager attach",
         "yum install -y cloud-init qemu-guest-agent cloud-utils-growpart gdisk",
         "systemctl enable qemu-guest-agent",
         "shred -u /etc/ssh/*_key /etc/ssh/*_key.pub",

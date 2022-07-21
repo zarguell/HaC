@@ -7,7 +7,7 @@
     "proxmox_storage_pool": "local-zfs",
     "proxmox_storage_pool_type": "zfspool",
     "proxmox_storage_format": "raw",
-    "proxmox_iso_pool": "local:iso",
+    "proxmox_iso_pool": "isos:iso",
     "centos_image": "rhel-8.6-x86_64-dvd.iso",
     "template_name": "RHEL8-Template",
     "template_description": "Rocky Linux 8 Template",
@@ -45,7 +45,7 @@
       "boot_wait": "10s",
       "cores": "2",
       "memory": "2048",
-      "http_directory": "rocky8",
+      "http_directory": "./",
       "ssh_username": "root",
       "ssh_password": "Packer",
       "ssh_port": 22,
@@ -59,6 +59,8 @@
     {
       "type": "shell",
       "inline": [
+        "subscription-manager register --username={{user `rhel_sub_user`}} --password={{user `rhel_sub_pass`}}",
+        "subscription-manager attach",
         "yum install -y cloud-init qemu-guest-agent cloud-utils-growpart gdisk",
         "shred -u /etc/ssh/*_key /etc/ssh/*_key.pub",
         "rm -f /var/run/utmp",

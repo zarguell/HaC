@@ -7,7 +7,7 @@
     "proxmox_storage_pool": "local-zfs",
     "proxmox_storage_pool_type": "zfspool",
     "proxmox_storage_format": "raw",
-    "proxmox_iso_pool": "local:iso",
+    "proxmox_iso_pool": "isos:iso",
     "centos_image": "Rocky-9.0-x86_64-dvd.iso",
     "template_name": "RL9-Template",
     "template_description": "Rocky Linux 9 Template",
