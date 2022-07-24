@@ -10,7 +10,7 @@
     "proxmox_iso_pool": "isos",
     "centos_image": "rhel-baseos-9.0-x86_64-dvd.iso",
     "template_name": "RHEL9-Template",
-    "template_description": "Rocky Linux 9 Template",
+    "template_description": "RHEL 9 Template",
     "version": ""
   },
   "builders": [

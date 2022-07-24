@@ -46,7 +46,7 @@
       "cores": "2",
       "cpu_type": "Nehalem",
       "memory": "2048",
-      "http_directory": "rocky9",
+      "http_directory": "./",
       "ssh_username": "root",
       "ssh_password": "Packer",
       "ssh_port": 22,

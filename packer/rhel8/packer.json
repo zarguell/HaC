@@ -10,7 +10,7 @@
     "proxmox_iso_pool": "isos:iso",
     "centos_image": "rhel-8.6-x86_64-dvd.iso",
     "template_name": "RHEL8-Template",
-    "template_description": "Rocky Linux 8 Template",
+    "template_description": "RHEL 8 Template",
     "version": ""
   },
   "builders": [
