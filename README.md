@@ -1,5 +1,5 @@
 # HaC
-HomeLab As Code: Infrastucture as Code configurations for an r/selfhosted (Proxmox) managed homelab. 
+HomeLab As Code: Infrastucture as Code configurations for a Proxmox managed bare metal k3s homelab. 
 
 # Design Goals
 
