@@ -3,7 +3,8 @@ autoinstall:
   version: 1
   locale: en_US
   keyboard:
-    layout: fr
+    layout: us
+    variant: us
   ssh:
     install-server: true
     allow-pw: true
@@ -11,12 +12,12 @@ autoinstall:
     - qemu-guest-agent
   storage:
     layout:
-      name: direct
+      name: lvm
     swap:
       size: 0
   user-data:
     package_upgrade: true
-    timezone: Europe/Paris
+    timezone: America/New_York
     users:
       - name: madalynn
         passwd: $6$xyz$1D0kz5pThgRWqxWw6JaZy.6FdkUCSRndc/PMtDr7hMK5mSw7ysChRdlbhkX83PBbNBpqXqef3sBkqGw3Rahs..
