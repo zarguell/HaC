@@ -1,3 +1,5 @@
 packer_cache
 secrets.json
 .DS_Store
+main.tf
+authorized_keys
