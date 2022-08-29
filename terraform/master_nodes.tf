@@ -8,11 +8,11 @@ locals {
     sockets        = 1
     memory         = 4096
     storage_type   = "scsi"
-    storage_id     = "local-lvm"
+    storage_id     = "local-zfs"
     disk_size      = "20G"
     user           = "k3s"
     network_bridge = "vmbr0"
-    network_tag    = -1
+    network_tag    = 40
   })
 
   master_node_ips = [for i in range(var.master_nodes_count) : cidrhost(var.control_plane_subnet, i + 1)]

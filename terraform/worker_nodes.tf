@@ -13,12 +13,12 @@ locals {
         sockets        = 1
         memory         = 4096
         storage_type   = "scsi"
-        storage_id     = "local-lvm"
+        storage_id     = "local-zfs"
         disk_size      = "20G"
         user           = "k3s"
         template       = var.node_template
         network_bridge = "vmbr0"
-        network_tag    = -1
+        network_tag    = 40
         }), {
         i  = i
         ip = cidrhost(pool.subnet, i)
